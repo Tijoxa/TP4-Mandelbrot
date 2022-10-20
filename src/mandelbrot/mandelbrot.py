@@ -22,9 +22,13 @@ def is_in_Mandelbrot(c:complex, max_iter:int=50):
         i+= 1
     return i == max_iter
 
-def is_in_Julia(z:complex, c:complex, max_iter:int=50):
+def is_in_Julia(z:complex, c:complex, eps:float = 1e-5,max_iter:int=50):
     Z = suite_julia(z,c)
     i = 0 
-    while abs(next(Z)) <= 2 and i < max_iter:
+    z_old = z 
+    z_cur = next(Z)
+    while abs(z_cur) <= 2 and i < max_iter:
+        z_old = z_cur
+        z_cur = next(Z)
         i+= 1
-    return i == max_iter
+    return i == max_iter and abs(z_cur - z_old) <= eps 
