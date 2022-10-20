@@ -1,9 +1,13 @@
-import src.mandelbrot.mandelbrot as mdl 
+import mandelbrot as mdl # TO DO: fix ça
 from PIL import Image
 import numpy as np 
 from tqdm import tqdm
 
-def plot_mandelbrot(zmin:complex=1-1j,zmax:complex=1+1j,pixel_size:float=5e-7,max_iter:int=50,fig_name:str="fig_mandel"):
+def plot_mandelbrot(zmin:complex=1-1j,
+                    zmax:complex=1+1j,
+                    pixel_size:float=5e-7,
+                    max_iter:int=50,
+                    fig_name:str="fig_mandel"):
     """ Affiche l'ensemble de Mandelbrot pour une plage [zmin,zmax] et enregistre le résultat au format .png
     
     Parametres
@@ -24,24 +28,32 @@ def plot_mandelbrot(zmin:complex=1-1j,zmax:complex=1+1j,pixel_size:float=5e-7,ma
     None 
 
     """
-    img = Image.new('L', (2000, 2000),255)
     rmin, imin = zmin.real, zmin.imag
     rmax, imax = zmax.real, zmax.imag
     rdiff, idiff = rmax-rmin, imax-imin
     X = np.arange(rmin, rmax, pixel_size)
     Y = np.arange(imin, imax, pixel_size)
+    ligne, colonne = len(X), len(Y)
+    img = Image.new('L', (ligne, colonne), 255)
+
     stream = tqdm(X)
-    stream.set_description("Génération de l'image...")
+    stream.set_description("Génération de l'image")
     for x in stream:
         for y in Y:
             c = complex(x, y)
-            if  mdl.is_in_Mandelbrot(c, max_iter):
-                tup = (int(2000*(x-rmin)/rdiff), int(2000*(y-imin)/idiff))
+            if mdl.is_in_Mandelbrot(c, max_iter):
+                tup = (int(ligne*(x-rmin)/rdiff), int(colonne*(y-imin)/idiff))
                 img.putpixel(tup, 0)
+    img.resize((2000, 2000))
     img.show()
     img.save(f"{fig_name}.png")
 
-def plot_julia(c:complex,zmin:complex=1-1j,zmax:complex=1+1j,pixel_size:float=5e-7,max_iter:int=50,fig_name:str="fig_mandel"):
+def plot_julia(c:complex,
+               zmin:complex=1-1j,
+               zmax:complex=1+1j,
+               pixel_size:float=5e-7,
+               max_iter:int=50,
+               fig_name:str="fig_mandel"):
     """ Affiche l'ensemble de Mandelbrot pour une plage [zmin,zmax] et enregistre le résultat au format .png
     
     Parametres
@@ -64,19 +76,26 @@ def plot_julia(c:complex,zmin:complex=1-1j,zmax:complex=1+1j,pixel_size:float=5e
     None 
 
     """
-    img = Image.new('L', (2000, 2000),255)
     rmin, imin = zmin.real, zmin.imag
     rmax, imax = zmax.real, zmax.imag
     rdiff, idiff = rmax-rmin, imax-imin
     X = np.arange(rmin, rmax, pixel_size)
     Y = np.arange(imin, imax, pixel_size)
+    ligne, colonne = len(X), len(Y)
+    img = Image.new('L', (ligne, colonne), 255)
+
     stream = tqdm(X)
-    stream.set_description("Génération de l'image...")
+    stream.set_description("Génération de l'image")
     for x in stream:
         for y in Y:
             z = complex(x, y)
-            if  mdl.is_in_Julia(z,c, max_iter):
-                tup = (int(2000*(x-rmin)/rdiff), int(2000*(y-imin)/idiff))
+            booleen = mdl.is_in_Julia(z, c, max_iter)
+            if booleen:
+                tup = (int(ligne*(x-rmin)/rdiff), int(colonne*(y-imin)/idiff))
                 img.putpixel(tup, 0)
+    img.resize((2000, 2000))
     img.show()
     img.save(f"{fig_name}.png")
+
+if __name__=='__main__':
+    plot_mandelbrot()
