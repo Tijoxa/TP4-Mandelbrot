@@ -7,11 +7,11 @@ def suite(z, c) -> complex:
         z = z ** 2 + c
 
 def suite_mandelbrot(c:complex) -> bool:
-    """Renvoie la suite de Mandelbrot"""
+    """Renvoie la suite de Mandelbrot, sans vérification"""
     return suite(0, c)
 
 def suite_julia(z:complex, c:complex) -> bool:
-    """Renvoie la suite de julia pour candidat et parametre"""
+    """Renvoie la suite de julia pour candidat et parametr, sans vérification"""
     ...
     return suite(z, c)
 
