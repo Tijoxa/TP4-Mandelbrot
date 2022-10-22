@@ -1,4 +1,3 @@
-"""Main call to helloworld. Mostly a parser."""
 import argparse
 from src.helper import hello_world, hello
 
