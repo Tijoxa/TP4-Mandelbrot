@@ -59,14 +59,15 @@ def plot_mandelbrot(zmin:complex=-1-1j,
             c = complex(x, y)
             if mdl.is_in_Mandelbrot(c, max_iter):
                 img.putpixel((enu_x, enu_y), 0)
-    img.save(f"src/mandelbrot/results/{fig_name}.png")
+    img.save(f"./mandelbrot/results/{fig_name}.png")
+    print(f"Image saved in ./mandelbrot/results/ as {fig_name}.png")
 
 def plot_julia(c:complex,
                zmin:complex=-1-1j,
                zmax:complex=1+1j,
                pixel_size:float=5e-4,
                max_iter:int=50,
-               fig_name:str="fig_mandel"):
+               fig_name:str="fig_julia"):
     """ Affiche l'ensemble de Mandelbrot pour une plage [zmin, zmax] et enregistre le résultat au format .png
     
     Paramètres
@@ -117,7 +118,8 @@ def plot_julia(c:complex,
             z = complex(x, y)
             if mdl.is_in_Julia(z, c, max_iter):
                 img.putpixel((enu_x, enu_y), 0)
-    img.save(f"src/mandelbrot/results/{fig_name}.png")
+    img.save(f"./mandelbrot/results/{fig_name}.png")
+    print(f"Image saved in ./mandelbrot/results/ as {fig_name}.png")
 
 if __name__ == "__main__":
     plot_mandelbrot()
