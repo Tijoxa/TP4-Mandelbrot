@@ -42,6 +42,6 @@ def is_in_Julia(z:complex, c:complex, max_iter:int=50, eps:float=1e-3):
         i += 1
     return i == max_iter and abs(z_cur - z_old) < eps 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     import doctest
     print(doctest.testmod(verbose=1))

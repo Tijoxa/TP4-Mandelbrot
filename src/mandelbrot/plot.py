@@ -105,7 +105,7 @@ def plot_julia(c:complex,
         Y = np.array([imin])
 
     ligne, colonne = len(X), len(Y)
-    img = Image.new('L', (ligne, colonne), 255)
+    img = Image.new("L", (ligne, colonne), 255)
 
     stream = tqdm(X)
     stream.set_description("Génération de l'image")
@@ -116,5 +116,5 @@ def plot_julia(c:complex,
                 img.putpixel((enu_x, enu_y), 0)
     img.save(f"src/mandelbrot/results/{fig_name}.png")
 
-if __name__=='__main__':
+if __name__ == "__main__":
     plot_mandelbrot()
