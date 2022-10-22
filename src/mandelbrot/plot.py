@@ -1,4 +1,7 @@
-import mandelbrot as mdl # TODO: fix l'import si exécution dans un autre cd
+import sys,os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))) # Ajout de ./src au sys.path
+
+import mandelbrot.mandelbrot as mdl 
 from PIL import Image
 import numpy as np 
 from tqdm import tqdm
