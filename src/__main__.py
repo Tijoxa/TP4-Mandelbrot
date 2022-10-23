@@ -1,5 +1,5 @@
 import argparse
-from mandelbrot.plot import plot_julia,plot_mandelbrot
+from mandelbrot.plot import plot_julia, plot_mandelbrot
 
 def main():
     """Main Function of the module. Plots a Mandelbrot or a Julia ensemble based on given arguments """
@@ -26,12 +26,12 @@ def main():
     args = parser.parse_args()
     mandelbrot = args.mandelbrot
 
-    if mandelbrot :  
-        plot_mandelbrot(args.zmin,args.zmax,args.pixel_size,args.max_iter,args.output)
+    if mandelbrot:  
+        plot_mandelbrot(args.zmin, args.zmax, args.pixel_size, args.max_iter, args.output)
     else:
         c = args.c
         assert c is not None, "A candidate c is required to plot a Julia ensemble"
-        plot_julia(c,args.zmin,args.zmax,args.pixel_size,args.max_iter,args.output)
+        plot_julia(c, args.zmin, args.zmax, args.pixel_size, args.max_iter, args.output)
 
 if __name__ == "__main__":
     main()
