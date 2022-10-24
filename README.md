@@ -5,6 +5,8 @@ Ce TP consiste à générer des images d'ensembles de Mandelbrot et de Julia et 
 ### Comment installer
 `pip install -e .`
 
+### Comment utiliser 
+
 #### Pour utiliser la version Python 
 Se placer dans le dossier `./src` et exécuter dans l'invité de commandes 
 
