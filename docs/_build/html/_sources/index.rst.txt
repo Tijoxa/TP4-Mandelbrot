@@ -10,6 +10,8 @@ Welcome to Mandelbrot plot's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   README
+   modules 
 
 
 Indices and tables
