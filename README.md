@@ -23,8 +23,4 @@ Les arguments sont les suivants :
  * `--max_iter max_iter`, `-m_i max_iter` Nombre maximum d'itérations pour tester l'appartenance à un ensemble
  * `--output output`, `-o output` Nom de l'image à enregistrer
 
-#### Pour utiliser le fichier exécutable 
-
-TO DO
-
 <p align="center"><img src="src/mandelbrot/results/fig_mandel.png" width="400" height="400"></p>
