@@ -11,8 +11,7 @@ Welcome to Mandelbrot plot's documentation!
    :caption: Contents:
 
    README
-   modules 
-
+   modules
 
 Indices and tables
 ==================

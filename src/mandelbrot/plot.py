@@ -1,4 +1,4 @@
-import sys,os
+import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))) # Ajout de ./src au sys.path
 
 import mandelbrot.mandelbrot as mdl 
@@ -59,8 +59,10 @@ def plot_mandelbrot(zmin:complex=-1-1j,
             c = complex(x, y)
             if mdl.is_in_Mandelbrot(c, max_iter):
                 img.putpixel((enu_x, enu_y), 0)
-    img.save(f"./mandelbrot/results/{fig_name}.png")
-    print(f"Image saved in ./mandelbrot/results/ as {fig_name}.png")
+    directory = os.path.join(os.getcwd(), "mandelbrot", "results")
+    os.makedirs(directory, exist_ok=True)
+    img.save(os.path.join(directory, fig_name + ".png"))
+    print(f"Image saved in {directory}/{fig_name}.png")
 
 def plot_julia(c:complex,
                zmin:complex=-1-1j,
@@ -118,8 +120,10 @@ def plot_julia(c:complex,
             z = complex(x, y)
             if mdl.is_in_Julia(z, c, max_iter):
                 img.putpixel((enu_x, enu_y), 0)
-    img.save(f"./mandelbrot/results/{fig_name}.png")
-    print(f"Image saved in ./mandelbrot/results/ as {fig_name}.png")
+    directory = os.path.join(os.getcwd(), "mandelbrot", "results")
+    os.makedirs(directory, exist_ok=True)
+    img.save(os.path.join(directory, fig_name + ".png"))
+    print(f"Image saved in {directory}/{fig_name}.png")
 
 if __name__ == "__main__":
     plot_mandelbrot()

@@ -30,8 +30,8 @@ release = '1.0.0'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [ 'sphinx.ext.autodoc',
-               'sphinx.ext.napoleon', # interprete les formats de docstring de google et numpy (en plus de .rst)
+extensions = ['sphinx.ext.autodoc',
+              'sphinx.ext.napoleon', # interprete les formats de docstring de google et numpy (en plus de .rst)
               'sphinx.ext.viewcode', # Donne accés au code source depuis la doc
               'myst_parser'
 ]
@@ -45,7 +45,7 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # Add type of source files
-source_suffix=[".rst", ".md"]
+source_suffix = [".rst", ".md"]
 
 # -- Options for HTML output -------------------------------------------------
 

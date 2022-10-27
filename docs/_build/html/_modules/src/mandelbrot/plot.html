@@ -15,6 +15,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -37,6 +38,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">TP4-Mandelbrot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">src</a></li>
 </ul>
 
@@ -65,7 +67,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for src.mandelbrot.plot</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span><span class="nn">os</span>
+<span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))))</span> <span class="c1"># Ajout de ./src au sys.path</span>
 
 <span class="kn">import</span> <span class="nn">mandelbrot.mandelbrot</span> <span class="k">as</span> <span class="nn">mdl</span> 
@@ -126,8 +128,10 @@
             <span class="n">c</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">mdl</span><span class="o">.</span><span class="n">is_in_Mandelbrot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">):</span>
                 <span class="n">img</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">enu_x</span><span class="p">,</span> <span class="n">enu_y</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;./mandelbrot/results/</span><span class="si">{</span><span class="n">fig_name</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image saved in ./mandelbrot/results/ as </span><span class="si">{</span><span class="n">fig_name</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span></div>
+    <span class="n">directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;mandelbrot&quot;</span><span class="p">,</span> <span class="s2">&quot;results&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">fig_name</span> <span class="o">+</span> <span class="s2">&quot;.png&quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image saved in </span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fig_name</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="plot_julia"><a class="viewcode-back" href="../../../src.mandelbrot.html#src.mandelbrot.plot.plot_julia">[docs]</a><span class="k">def</span> <span class="nf">plot_julia</span><span class="p">(</span><span class="n">c</span><span class="p">:</span><span class="nb">complex</span><span class="p">,</span>
                <span class="n">zmin</span><span class="p">:</span><span class="nb">complex</span><span class="o">=-</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span>
@@ -185,8 +189,10 @@
             <span class="n">z</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">mdl</span><span class="o">.</span><span class="n">is_in_Julia</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">):</span>
                 <span class="n">img</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">enu_x</span><span class="p">,</span> <span class="n">enu_y</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;./mandelbrot/results/</span><span class="si">{</span><span class="n">fig_name</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image saved in ./mandelbrot/results/ as </span><span class="si">{</span><span class="n">fig_name</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span></div>
+    <span class="n">directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;mandelbrot&quot;</span><span class="p">,</span> <span class="s2">&quot;results&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">fig_name</span> <span class="o">+</span> <span class="s2">&quot;.png&quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image saved in </span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fig_name</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span></div>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">plot_mandelbrot</span><span class="p">()</span>
